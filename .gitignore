@@ -1,2 +1,6 @@
 .vercel
 .tools
+.DS_Store
+.lighthouse*.json
+.lighthouse*.html
+.screenshots

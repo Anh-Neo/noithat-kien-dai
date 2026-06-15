@@ -16,10 +16,8 @@
     <meta property="og:image" content="https://website-nt.vercel.app/assets/og-kien-dai.jpg">
     <meta property="og:locale" content="vi_VN">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="preload" href="assets/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/lora-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/playfair-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/playfair-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/montserrat-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" as="image" fetchpriority="high" href="assets/hero-interior-mobile.webp" type="image/webp" media="(max-width: 680px)">
     <link rel="preload" as="image" fetchpriority="high" href="assets/hero-interior.webp" type="image/webp" media="(min-width: 681px)">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2318130f'/%3E%3Ctext x='32' y='39' font-family='Arial,sans-serif' font-size='22' font-weight='700' fill='%23fffaf3' text-anchor='middle'%3EKD%3C/text%3E%3C/svg%3E">
@@ -134,20 +132,35 @@
           </div>
         </div>
         <div class="audience-grid">
-          <article>
-            <span>01</span>
-            <h3>Căn hộ chung cư</h3>
-            <p>Tối ưu lưu trữ, bếp, phòng ngủ, bàn làm việc và hệ tủ âm tường cho diện tích vừa và nhỏ.</p>
+          <article class="audience-card">
+            <div class="audience-media">
+              <img src="assets/project-apartment.webp" width="760" height="570" alt="Căn hộ chung cư hiện đại với hệ tủ gỗ sáng màu" loading="lazy" decoding="async">
+              <span class="audience-number">01</span>
+            </div>
+            <div class="audience-body">
+              <h3>Căn hộ chung cư</h3>
+              <p>Tối ưu lưu trữ, bếp, phòng ngủ, bàn làm việc và hệ tủ âm tường cho diện tích vừa và nhỏ.</p>
+            </div>
           </article>
-          <article>
-            <span>02</span>
-            <h3>Nhà phố</h3>
-            <p>Thiết kế đồng bộ phòng khách, bếp, phòng ngủ, phòng thờ và khu sinh hoạt gia đình.</p>
+          <article class="audience-card">
+            <div class="audience-media">
+              <img src="assets/service-living.webp" width="760" height="517" alt="Không gian phòng khách nhà phố hiện đại nhiều chất gỗ" loading="lazy" decoding="async">
+              <span class="audience-number">02</span>
+            </div>
+            <div class="audience-body">
+              <h3>Nhà phố</h3>
+              <p>Thiết kế đồng bộ phòng khách, bếp, phòng ngủ, phòng thờ và khu sinh hoạt gia đình.</p>
+            </div>
           </article>
-          <article>
-            <span>03</span>
-            <h3>Khách lẻ gia đình</h3>
-            <p>Nhận từng hạng mục riêng như tủ bếp, tủ áo, kệ tivi, giường, bàn học, bàn làm việc.</p>
+          <article class="audience-card">
+            <div class="audience-media">
+              <img src="assets/service-wardrobe.webp" width="760" height="760" alt="Tủ áo và hệ lưu trữ phòng ngủ cho gia đình" loading="lazy" decoding="async">
+              <span class="audience-number">03</span>
+            </div>
+            <div class="audience-body">
+              <h3>Khách lẻ gia đình</h3>
+              <p>Nhận từng hạng mục riêng như tủ bếp, tủ áo, kệ tivi, giường, bàn học, bàn làm việc.</p>
+            </div>
           </article>
         </div>
       </section>
@@ -169,7 +182,7 @@
             </div>
           </article>
           <article class="service-card">
-            <img src="assets/service-production.webp" width="760" height="570" alt="Hệ tủ gỗ công nghiệp hiện đại theo kích thước thực tế" loading="lazy" decoding="async">
+            <img src="assets/service-production.webp" width="760" height="1013" alt="Hệ tủ gỗ công nghiệp hiện đại theo kích thước thực tế" loading="lazy" decoding="async">
             <div>
               <h3>Sản xuất nội thất</h3>
               <p>Gia công tủ bếp, tủ áo, kệ, giường, bàn và hệ lưu trữ theo kích thước đã khảo sát.</p>
@@ -183,21 +196,21 @@
             </div>
           </article>
           <article class="service-card">
-            <img src="assets/service-kitchen.webp" width="760" height="570" alt="Tủ bếp hiện đại bằng gỗ công nghiệp" loading="lazy" decoding="async">
+            <img src="assets/service-kitchen.webp" width="760" height="1140" alt="Tủ bếp hiện đại bằng gỗ công nghiệp" loading="lazy" decoding="async">
             <div>
               <h3>Tủ bếp</h3>
               <p>Bếp chữ I, chữ L, đảo bếp, phụ kiện lưu trữ, mặt đá và bề mặt chống ẩm dễ vệ sinh.</p>
             </div>
           </article>
           <article class="service-card">
-            <img src="assets/service-wardrobe.webp" width="760" height="570" alt="Tủ áo âm tường trong phòng ngủ tối giản" loading="lazy" decoding="async">
+            <img src="assets/service-wardrobe.webp" width="760" height="760" alt="Tủ áo âm tường trong phòng ngủ tối giản" loading="lazy" decoding="async">
             <div>
               <h3>Tủ áo</h3>
               <p>Tủ cánh mở, cánh lùa, tủ âm tường, bàn trang điểm và hệ lưu trữ phòng ngủ.</p>
             </div>
           </article>
           <article class="service-card">
-            <img src="assets/service-living.webp" width="760" height="570" alt="Nội thất phòng khách nhà phố hiện đại" loading="lazy" decoding="async">
+            <img src="assets/service-living.webp" width="760" height="517" alt="Nội thất phòng khách nhà phố hiện đại" loading="lazy" decoding="async">
             <div>
               <h3>Căn hộ, nhà phố, văn phòng</h3>
               <p>Thiết kế đồng bộ không gian sống và làm việc, ưu tiên sự gọn gàng, sáng và dễ vận hành.</p>

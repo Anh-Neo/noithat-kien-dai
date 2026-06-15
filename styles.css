@@ -1,36 +1,18 @@
 @font-face {
-  font-family: "Lora";
+  font-family: "Montserrat";
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 400 800;
   font-display: swap;
-  src: url("assets/fonts/lora-vietnamese.woff2") format("woff2");
+  src: url("assets/fonts/montserrat-vietnamese.woff2") format("woff2");
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 
 @font-face {
-  font-family: "Lora";
+  font-family: "Montserrat";
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 400 800;
   font-display: swap;
-  src: url("assets/fonts/lora-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-weight: 600 800;
-  font-display: swap;
-  src: url("assets/fonts/playfair-vietnamese.woff2") format("woff2");
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-
-@font-face {
-  font-family: "Playfair Display";
-  font-style: normal;
-  font-weight: 600 800;
-  font-display: swap;
-  src: url("assets/fonts/playfair-latin.woff2") format("woff2");
+  src: url("assets/fonts/montserrat-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -61,8 +43,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Lora", Georgia, "Times New Roman", serif;
-  line-height: 1.65;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
@@ -224,7 +206,7 @@ a {
   color: var(--wood);
   font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.11em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -242,35 +224,38 @@ p {
 h1 {
   max-width: 820px;
   margin-bottom: 22px;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.35rem, 4.6vw, 4.25rem);
-  line-height: 1.08;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 3.62rem;
+  line-height: 1.16;
   letter-spacing: 0;
   font-weight: 800;
+  text-transform: uppercase;
   text-wrap: balance;
   overflow-wrap: break-word;
 }
 
 h2 {
   margin-bottom: 0;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.8rem, 3.4vw, 3.05rem);
-  line-height: 1.1;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 2.38rem;
+  line-height: 1.24;
   letter-spacing: 0;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 h3 {
   margin-bottom: 10px;
   font-size: 1.12rem;
   line-height: 1.3;
+  text-transform: uppercase;
 }
 
 .hero-copy {
   max-width: 680px;
   margin-bottom: 30px;
   color: rgba(255, 255, 255, 0.84);
-  font-size: clamp(1rem, 1.35vw, 1.14rem);
+  font-size: 1.08rem;
   font-weight: 500;
   line-height: 1.78;
   overflow-wrap: break-word;
@@ -362,6 +347,7 @@ h3 {
 .trust-strip strong {
   margin-bottom: 5px;
   font-size: 1.35rem;
+  text-transform: uppercase;
 }
 
 .trust-strip span,
@@ -434,18 +420,73 @@ h3 {
   border-radius: var(--radius);
 }
 
-.audience-grid article,
 .pricing-grid article {
   padding: 26px;
 }
 
-.audience-grid span,
 .pricing-grid span {
   display: inline-block;
   margin-bottom: 34px;
   color: var(--sage);
   font-size: 0.8rem;
   font-weight: 700;
+  text-transform: uppercase;
+}
+
+.audience-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100%;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.audience-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.audience-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(24, 19, 15, 0.34), rgba(24, 19, 15, 0) 58%);
+}
+
+.audience-media img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  filter: saturate(0.96);
+  transition: transform 260ms ease;
+}
+
+.audience-number {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 1;
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  background: rgba(24, 19, 15, 0.72);
+  color: var(--surface-strong);
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(24, 19, 15, 0.2);
+}
+
+.audience-body {
+  padding: 24px;
+}
+
+.audience-body h3 {
+  margin-bottom: 12px;
+  font-size: 1.08rem;
 }
 
 .service-grid {
@@ -465,9 +506,20 @@ h3 {
   box-shadow: 0 18px 48px rgba(35, 25, 16, 0.1);
 }
 
+.audience-card:hover .audience-media img {
+  transform: scale(1.04);
+}
+
 .service-card img {
-  aspect-ratio: 4 / 3;
+  height: clamp(220px, 23vw, 280px);
   object-fit: cover;
+  object-position: center;
+  background: #ece6dc;
+}
+
+.service-card:nth-child(2) img,
+.service-card:nth-child(4) img {
+  object-position: center 58%;
 }
 
 .service-card div {
@@ -564,12 +616,13 @@ h3 {
   color: rgba(255, 255, 255, 0.76);
   font-size: 0.84rem;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .project-card h3 {
   max-width: 540px;
   margin-bottom: 0;
-  font-size: clamp(1.22rem, 1.9vw, 1.86rem);
+  font-size: 1.58rem;
 }
 
 .pricing {
@@ -615,14 +668,35 @@ h3 {
 }
 
 .process-list li {
-  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  padding: 28px 24px 24px;
 }
 
 .process-list span {
-  display: block;
-  margin-bottom: 34px;
-  color: var(--wood);
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 28px;
+  background: var(--ink);
+  color: var(--surface-strong);
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
   font-weight: 700;
+  border-radius: 999px;
+}
+
+.process-list li::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--wood), var(--sage));
+}
+
+.process-list h3 {
+  font-size: 1.05rem;
 }
 
 .faq {
@@ -749,7 +823,7 @@ textarea {
 .footer-links {
   justify-content: end;
   color: var(--muted);
-  font-weight: 750;
+  font-weight: 700;
 }
 
 @media (max-width: 980px) {
@@ -784,6 +858,14 @@ textarea {
 
   .hero {
     min-height: 720px;
+  }
+
+  h1 {
+    font-size: 3.28rem;
+  }
+
+  h2 {
+    font-size: 2.36rem;
   }
 
   .trust-strip,
@@ -852,12 +934,12 @@ textarea {
 
   h1 {
     max-width: 340px;
-    font-size: clamp(1.82rem, 8.2vw, 2.35rem);
+    font-size: 2.08rem;
     line-height: 1.18;
   }
 
   h2 {
-    font-size: clamp(1.62rem, 8vw, 2.2rem);
+    font-size: 1.92rem;
   }
 
   .hero-copy {

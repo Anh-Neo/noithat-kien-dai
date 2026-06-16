@@ -50,6 +50,20 @@ const structuredData = {
     <meta property="og:image" content={imageUrl}>
     <meta property="og:locale" content="vi_VN">
     <meta name="twitter:card" content="summary_large_image">
+    <script is:inline>
+      (() => {
+        try {
+          const storedTheme = window.localStorage.getItem("kien-dai-theme");
+          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          const theme = storedTheme || systemTheme;
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (error) {
+          document.documentElement.dataset.theme = "light";
+          document.documentElement.style.colorScheme = "light";
+        }
+      })();
+    </script>
     <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/montserrat-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
     {preloadHeroImages ? (

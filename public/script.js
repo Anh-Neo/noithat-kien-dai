@@ -5,6 +5,7 @@ const revealItems = document.querySelectorAll(".reveal");
 const searchInput = document.querySelector("#site-search-input");
 const designCards = document.querySelectorAll("[data-design-card]");
 const designEmpty = document.querySelector("[data-design-empty]");
+const themeButtons = document.querySelectorAll("[data-theme-toggle]");
 const normalizeSearch = (value) =>
   value
     .normalize("NFD")
@@ -12,6 +13,31 @@ const normalizeSearch = (value) =>
     .replace(/đ/g, "d")
     .replace(/Đ/g, "d")
     .toLowerCase();
+const setTheme = (theme) => {
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
+  themeButtons.forEach((button) => {
+    const isDark = theme === "dark";
+    const label = isDark ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối";
+    button.setAttribute("aria-label", label);
+    button.setAttribute("aria-pressed", String(isDark));
+    const text = button.querySelector(".theme-toggle-text");
+    if (text) text.textContent = isDark ? "Sáng" : "Tối";
+  });
+};
+
+if (themeButtons.length) {
+  const currentTheme = document.documentElement.dataset.theme || "light";
+  setTheme(currentTheme);
+
+  themeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      setTheme(nextTheme);
+      window.localStorage.setItem("kien-dai-theme", nextTheme);
+    });
+  });
+}
 
 if (menuButton && menu) {
   menuButton.addEventListener("click", () => {

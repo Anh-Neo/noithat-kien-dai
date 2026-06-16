@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "./PageHero.astro";
+import DesignCard from "./DesignCard.astro";
+import { designs } from "../data/designs.js";
+
+const { page, canonicalPrefix = "" } = Astro.props;
+const canonical = canonicalPrefix ? `/${canonicalPrefix}/${page.slug}/` : `/${page.slug}/`;
+const relatedItems = (page.relatedDesignSlugs || [])
+  .map((slug) => designs.find((design) => design.slug === slug))
+  .filter(Boolean);
+---
+
+<BaseLayout
+  title={`${page.title} | Công ty Cổ phần Kiến Đại`}
+  description={page.description}
+  canonical={canonical}
+  ogImage={page.image}
+  preloadHeroImages={false}
+>
+  <main id="main" class="content-main">
+    <PageHero
+      eyebrow={page.eyebrow}
+      title={page.title}
+      description={page.description}
+      image={page.image}
+      imageAlt={page.imageAlt}
+      stats={page.steps?.slice(0, 3) || []}
+    />
+
+    <section class="section content-section" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Tổng quan</div>
+          <h2 id="overview-title">{page.summary}</h2>
+        </div>
+      </div>
+      <div class="content-card-grid">
+        {page.highlights.map((item) => (
+          <article class="content-card reveal">
+            <span>{item.title}</span>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section split-section">
+      <div class="split-media">
+        <img src={page.image} width="1100" height="825" alt={page.imageAlt} loading="lazy" decoding="async">
+      </div>
+      <div class="split-copy">
+        {page.sections.map((section) => (
+          <div>
+            <div class="section-kicker">{section.title}</div>
+            <p>{section.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {page.packages ? (
+      <section class="section package-section" aria-labelledby="package-title">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Gói tham khảo</div>
+            <h2 id="package-title">Lựa chọn theo nhu cầu thực tế</h2>
+          </div>
+        </div>
+        <div class="package-grid">
+          {page.packages.map((item) => (
+            <article class="package-card reveal">
+              <h3>{item.title}</h3>
+              <strong>{item.price}</strong>
+              <p>{item.text}</p>
+              <a class="text-link" href="/lien-he/">Nhận tư vấn</a>
+            </article>
+          ))}
+        </div>
+      </section>
+    ) : null}
+
+    <section class="section process-section" aria-labelledby="process-title">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Cách triển khai</div>
+          <h2 id="process-title">Quy trình rõ từng bước</h2>
+        </div>
+      </div>
+      <div class="step-row">
+        {page.steps.map((step, index) => (
+          <div class="step-chip reveal">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{step}</strong>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {relatedItems.length ? (
+      <section class="section related-section" aria-labelledby="related-title">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Tham khảo thêm</div>
+            <h2 id="related-title">Mẫu nội thất liên quan</h2>
+          </div>
+        </div>
+        <div class="design-grid design-grid-compact">
+          {relatedItems.map((item, index) => <DesignCard design={item} featured={index === 0} />)}
+        </div>
+      </section>
+    ) : null}
+  </main>
+</BaseLayout>

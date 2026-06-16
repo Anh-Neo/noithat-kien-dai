@@ -1,0 +1,21 @@
+---
+const { eyebrow, title, description, image, imageAlt = "", stats = [] } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p>{description}</p>
+      {stats.length ? (
+        <div class="page-hero-stats" aria-label="Thông tin nổi bật">
+          {stats.map((stat) => <span>{stat}</span>)}
+        </div>
+      ) : null}
+    </div>
+    <div class="page-hero-media">
+      <img src={image} width="1100" height="825" alt={imageAlt} loading="eager" fetchpriority="high" decoding="async">
+    </div>
+  </div>
+</section>

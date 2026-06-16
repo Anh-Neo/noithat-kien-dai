@@ -1,0 +1,15 @@
+---
+import RichContentPage from "../components/RichContentPage.astro";
+import { infoPages } from "../data/sitePages.js";
+
+export function getStaticPaths() {
+  return infoPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page }
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<RichContentPage page={page} />

@@ -1,0 +1,19 @@
+---
+const { design, featured = false } = Astro.props;
+const searchText = [design.title, design.category, design.excerpt, design.intro, ...(design.specs || [])]
+  .join(" ")
+  .toLowerCase();
+---
+
+<article class:list={["design-card", "reveal", { "design-card-featured": featured }]} data-design-card data-search-text={searchText}>
+  <a class="design-card-media" href={`/mau-thiet-ke/${design.slug}/`} aria-label={`Xem ${design.title}`}>
+    <img src={design.image} width="760" height="570" alt={design.title} loading={featured ? "eager" : "lazy"} decoding="async">
+    <span>{design.category}</span>
+  </a>
+  <div class="design-card-body">
+    <time datetime={design.date.split("/").reverse().join("-")}>{design.date}</time>
+    <h2><a href={`/mau-thiet-ke/${design.slug}/`}>{design.title}</a></h2>
+    <p>{design.excerpt}</p>
+    <a class="text-link" href={`/mau-thiet-ke/${design.slug}/`}>Xem thêm</a>
+  </div>
+</article>

@@ -1,0 +1,72 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const {
+  title = "Công ty Cổ phần Kiến Đại | Thiết kế, sản xuất và thi công nội thất tại Hà Nội",
+  description = "Công ty Cổ phần Kiến Đại chuyên thiết kế 3D, sản xuất nội thất tại xưởng và thi công trọn gói cho căn hộ chung cư, nhà phố, gia đình, văn phòng tại Hà Nội và các tỉnh lân cận.",
+  canonical = Astro.url.pathname,
+  ogImage = "/assets/og-kien-dai.jpg",
+  bodyClass = "",
+  preloadHeroImages = true,
+  heroMobileImage = "/assets/hero-interior-mobile.webp",
+  heroDesktopImage = "/assets/hero-interior.webp"
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical, Astro.site).toString();
+const imageUrl = new URL(ogImage, Astro.site).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  name: "Công ty Cổ phần Kiến Đại",
+  description: "Thiết kế 3D, sản xuất và thi công nội thất trọn gói cho căn hộ chung cư, nhà phố, gia đình và văn phòng.",
+  url: Astro.site?.toString(),
+  logo: new URL("/assets/logo-kien-dai.jpg", Astro.site).toString(),
+  areaServed: ["Hà Nội", "Hưng Yên", "Bắc Ninh", "Vĩnh Phúc", "Hà Nam", "Hòa Bình"],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Hà Nội",
+    addressCountry: "VN"
+  },
+  priceRange: "$$"
+};
+---
+
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <meta name="keywords" content="Công ty Cổ phần Kiến Đại, nội thất Kiến Đại, thiết kế nội thất Hà Nội, thi công nội thất Hà Nội, sản xuất nội thất, xưởng nội thất, tủ bếp, tủ áo, nội thất chung cư, nội thất nhà phố">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Công ty Cổ phần Kiến Đại">
+    <link rel="canonical" href={canonicalUrl}>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={canonicalUrl}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content={imageUrl}>
+    <meta property="og:locale" content="vi_VN">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/montserrat-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
+    {preloadHeroImages ? (
+      <>
+        <link rel="preload" as="image" fetchpriority="high" href={heroMobileImage} type="image/webp" media="(max-width: 680px)">
+        <link rel="preload" as="image" fetchpriority="high" href={heroDesktopImage} type="image/webp" media="(min-width: 681px)">
+      </>
+    ) : null}
+    <link rel="icon" type="image/jpeg" href="/assets/favicon-kien-dai.jpg">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">Bỏ qua menu</a>
+    <Header />
+    <slot />
+    <Footer />
+    <script src="/script.js" defer></script>
+  </body>
+</html>

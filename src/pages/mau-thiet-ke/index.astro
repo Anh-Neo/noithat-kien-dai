@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../components/ArchiveHero.astro";
+import DesignCard from "../../components/DesignCard.astro";
+import Pagination from "../../components/Pagination.astro";
+import { getDesignPage, totalDesignPages } from "../../data/designs.js";
+
+const currentPage = 1;
+const items = getDesignPage(currentPage);
+---
+
+<BaseLayout
+  title="Mẫu thiết kế nội thất đẹp | Công ty Cổ phần Kiến Đại"
+  description="Tổng hợp mẫu thiết kế nội thất căn hộ, nhà phố, tủ bếp, tủ áo và văn phòng theo phong cách clean minimal, hiện đại, dễ ứng dụng tại Hà Nội."
+  canonical="/mau-thiet-ke/"
+  heroMobileImage="/assets/archive-hero-mobile.webp"
+>
+  <main id="main" class="archive-main">
+    <ArchiveHero
+      title="Mẫu thiết kế nội thất đẹp, dễ ứng dụng"
+      description="Bộ sưu tập mẫu nội thất được Kiến Đại chọn lọc theo nhu cầu thực tế: căn hộ chung cư, nhà phố, tủ bếp, tủ áo, văn phòng và hạng mục gia đình."
+    />
+    <section class="section archive-section" aria-labelledby="archive-title">
+      <div class="section-heading archive-heading">
+        <div>
+          <div class="section-kicker">Danh sách mẫu</div>
+          <h2 id="archive-title">Không gian tham khảo cho gia đình Việt</h2>
+        </div>
+        <p>Mỗi mẫu có ảnh đại diện, mô tả công năng và gợi ý vật liệu để bạn dễ hình dung trước khi trao đổi bản vẽ 3D.</p>
+      </div>
+      <div class="design-grid">
+        {items.map((design, index) => <DesignCard design={design} featured={index === 0} />)}
+      </div>
+      <p class="design-search-empty" data-design-empty>Chưa có mẫu phù hợp với từ khóa này.</p>
+      <Pagination currentPage={currentPage} totalPages={totalDesignPages} />
+    </section>
+  </main>
+</BaseLayout>

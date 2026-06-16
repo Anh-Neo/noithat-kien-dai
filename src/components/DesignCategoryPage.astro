@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArchiveHero from "./ArchiveHero.astro";
+import DesignCard from "./DesignCard.astro";
+import { categoryPages } from "../data/sitePages.js";
+import { designs } from "../data/designs.js";
+
+const { page } = Astro.props;
+const items = designs.filter((design) => page.labels.includes(design.category));
+---
+
+<BaseLayout
+  title={`${page.title} | Kiến Đại`}
+  description={page.description}
+  canonical={`/mau-thiet-ke/${page.slug}/`}
+  ogImage={page.heroImage}
+  heroMobileImage="/assets/archive-hero-mobile.webp"
+>
+  <main id="main" class="archive-main">
+    <ArchiveHero title={page.title} description={page.description} />
+    <section class="section archive-section" aria-labelledby="category-title">
+      <div class="category-tabs" aria-label="Danh mục mẫu thiết kế">
+        <a href="/mau-thiet-ke/">Tất cả</a>
+        {categoryPages.map((item) => (
+          <a class:list={{ "is-active": item.slug === page.slug }} href={`/mau-thiet-ke/${item.slug}/`}>{item.title.replace("Mẫu ", "")}</a>
+        ))}
+      </div>
+      <div class="section-heading archive-heading">
+        <div>
+          <div class="section-kicker">Danh mục mẫu</div>
+          <h2 id="category-title">{page.title}</h2>
+        </div>
+        <p>{items.length} mẫu được chọn theo đúng nhóm nhu cầu, có ảnh đại diện, mô tả công năng và liên kết chi tiết.</p>
+      </div>
+      <div class="design-grid">
+        {items.map((design, index) => <DesignCard design={design} featured={index === 0} />)}
+      </div>
+      <p class="design-search-empty" data-design-empty>Chưa có mẫu phù hợp với từ khóa này.</p>
+    </section>
+  </main>
+</BaseLayout>

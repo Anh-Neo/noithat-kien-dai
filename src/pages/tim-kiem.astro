@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArchiveHero from "../components/ArchiveHero.astro";
+import DesignCard from "../components/DesignCard.astro";
+import { designs } from "../data/designs.js";
+---
+
+<BaseLayout
+  title="Tìm kiếm mẫu nội thất | Công ty Cổ phần Kiến Đại"
+  description="Tìm kiếm mẫu thiết kế nội thất, tủ bếp, tủ áo, phòng khách, phòng ngủ, căn hộ, nhà phố và văn phòng của Kiến Đại."
+  canonical="/tim-kiem/"
+  heroMobileImage="/assets/archive-hero-mobile.webp"
+>
+  <main id="main" class="archive-main">
+    <ArchiveHero
+      eyebrow="Tìm kiếm"
+      title="Tìm kiếm mẫu nội thất phù hợp"
+      description="Nhập từ khóa như tủ bếp, phòng ngủ, căn hộ, nhà phố, văn phòng hoặc thi công trọn gói để lọc nhanh toàn bộ thư viện mẫu."
+    />
+    <section class="section archive-section" aria-labelledby="search-title">
+      <div class="section-heading archive-heading">
+        <div>
+          <div class="section-kicker">Kết quả tìm kiếm</div>
+          <h2 id="search-title">Toàn bộ mẫu thiết kế Kiến Đại</h2>
+        </div>
+        <p>Trang này chứa toàn bộ mẫu hiện có để ô tìm kiếm trên header luôn trả về nội dung phù hợp.</p>
+      </div>
+      <div class="design-grid">
+        {designs.map((design, index) => <DesignCard design={design} featured={index === 0} />)}
+      </div>
+      <p class="design-search-empty" data-design-empty>Chưa có mẫu phù hợp với từ khóa này.</p>
+    </section>
+  </main>
+</BaseLayout>

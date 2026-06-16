@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArchiveHero from "../../../components/ArchiveHero.astro";
+import DesignCard from "../../../components/DesignCard.astro";
+import Pagination from "../../../components/Pagination.astro";
+import { getDesignPage, totalDesignPages } from "../../../data/designs.js";
+
+export function getStaticPaths() {
+  return Array.from({ length: totalDesignPages - 1 }, (_, index) => {
+    const page = index + 2;
+    return {
+      params: { page: String(page) },
+      props: { currentPage: page }
+    };
+  });
+}
+
+const { currentPage } = Astro.props;
+const items = getDesignPage(currentPage);
+---
+
+<BaseLayout
+  title={`Mẫu thiết kế nội thất đẹp - Trang ${currentPage} | Kiến Đại`}
+  description={`Trang ${currentPage} bộ sưu tập mẫu thiết kế nội thất căn hộ, nhà phố, tủ bếp, tủ áo và văn phòng của Kiến Đại.`}
+  canonical={`/mau-thiet-ke/page/${currentPage}/`}
+  heroMobileImage="/assets/archive-hero-mobile.webp"
+>
+  <main id="main" class="archive-main">
+    <ArchiveHero
+      title={`Mẫu thiết kế nội thất - Trang ${currentPage}`}
+      description="Tiếp tục tham khảo các phương án nội thất gỗ công nghiệp tối giản, hiện đại và dễ thi công theo ngân sách gia đình."
+    />
+    <section class="section archive-section" aria-labelledby="archive-title">
+      <div class="section-heading archive-heading">
+        <div>
+          <div class="section-kicker">Danh sách mẫu</div>
+          <h2 id="archive-title">Ý tưởng bố trí nội thất theo từng không gian</h2>
+        </div>
+        <p>Card được dàn theo lưới ảnh lớn, mô tả ngắn và liên kết chi tiết để người dùng dễ quét nội dung trên desktop lẫn mobile.</p>
+      </div>
+      <div class="design-grid">
+        {items.map((design, index) => <DesignCard design={design} featured={index === 0} />)}
+      </div>
+      <p class="design-search-empty" data-design-empty>Chưa có mẫu phù hợp với từ khóa này.</p>
+      <Pagination currentPage={currentPage} totalPages={totalDesignPages} />
+    </section>
+  </main>
+</BaseLayout>

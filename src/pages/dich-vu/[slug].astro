@@ -1,0 +1,15 @@
+---
+import RichContentPage from "../../components/RichContentPage.astro";
+import { servicePages } from "../../data/sitePages.js";
+
+export function getStaticPaths() {
+  return servicePages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page }
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<RichContentPage page={page} canonicalPrefix="dich-vu" />

@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DesignCard from "../../components/DesignCard.astro";
+import DesignCategoryPage from "../../components/DesignCategoryPage.astro";
+import { designs } from "../../data/designs.js";
+import { categoryPages } from "../../data/sitePages.js";
+
+export function getStaticPaths() {
+  return [
+    ...designs.map((design) => ({
+      params: { slug: design.slug },
+      props: { design }
+    })),
+    ...categoryPages.map((categoryPage) => ({
+      params: { slug: categoryPage.slug },
+      props: { categoryPage }
+    }))
+  ];
+}
+
+const { design, categoryPage } = Astro.props;
+const related = design ? designs.filter((item) => item.slug !== design.slug && item.category === design.category).slice(0, 3) : [];
+const fallbackRelated = design ? designs.filter((item) => item.slug !== design.slug).slice(0, 3) : [];
+const relatedItems = related.length ? related : fallbackRelated;
+---
+
+{categoryPage ? (
+  <DesignCategoryPage page={categoryPage} />
+) : (
+  <BaseLayout
+    title={`${design.title} | Mẫu thiết kế nội thất Kiến Đại`}
+    description={design.excerpt}
+    canonical={`/mau-thiet-ke/${design.slug}/`}
+    ogImage={design.image}
+    preloadHeroImages={false}
+  >
+    <main id="main" class="detail-main">
+      <article class="detail-hero">
+        <div class="detail-hero-copy">
+          <div class="section-kicker">{design.category}</div>
+          <h1>{design.title}</h1>
+          <p>{design.intro}</p>
+          <div class="detail-meta">
+            <span>{design.date}</span>
+            <span>Thiết kế & thi công bởi Kiến Đại</span>
+          </div>
+        </div>
+        <div class="detail-hero-media">
+          <img src={design.image} width="1100" height="825" alt={design.title} decoding="async" fetchpriority="high">
+        </div>
+      </article>
+
+      <section class="section detail-content">
+        <aside class="detail-specs" aria-label="Thông tin nhanh">
+          <h2>Thông tin nhanh</h2>
+          {design.specs.map((spec) => <span>{spec}</span>)}
+          <a class="btn btn-primary" href="/lien-he/">Nhận tư vấn mẫu này</a>
+        </aside>
+        <div class="detail-body">
+          <h2>Điểm đáng chú ý</h2>
+          {design.sections.map((paragraph) => <p>{paragraph}</p>)}
+          <h2>Gợi ý triển khai</h2>
+          <p>Kiến Đại có thể khảo sát hiện trạng, dựng phối cảnh 3D, bóc tách vật liệu và sản xuất tại xưởng theo kích thước thực tế. Mẫu này có thể điều chỉnh màu sắc, phụ kiện và cấu hình vật liệu theo ngân sách của từng gia đình.</p>
+        </div>
+      </section>
+
+      <section class="section related-section" aria-labelledby="related-title">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Gợi ý thêm</div>
+            <h2 id="related-title">Mẫu thiết kế liên quan</h2>
+          </div>
+        </div>
+        <div class="design-grid design-grid-compact">
+          {relatedItems.map((item) => <DesignCard design={item} />)}
+        </div>
+      </section>
+    </main>
+  </BaseLayout>
+)}

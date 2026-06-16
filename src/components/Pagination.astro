@@ -1,0 +1,12 @@
+---
+const { currentPage, totalPages, basePath = "/mau-thiet-ke" } = Astro.props;
+const pageHref = (page) => page === 1 ? `${basePath}/` : `${basePath}/page/${page}/`;
+---
+
+<nav class="pagination" aria-label="Phân trang mẫu thiết kế">
+  {currentPage > 1 && <a href={pageHref(currentPage - 1)}>Trước</a>}
+  {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+    <a class={page === currentPage ? "is-current" : ""} href={pageHref(page)} aria-current={page === currentPage ? "page" : undefined}>{page}</a>
+  ))}
+  {currentPage < totalPages && <a href={pageHref(currentPage + 1)}>Sau</a>}
+</nav>

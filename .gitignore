@@ -1,7 +1,11 @@
-.vercel
-.tools
+node_modules/
+.npm-cache/
+dist/
+.astro/
 .DS_Store
+.screenshots/
+.tools/
+.vercel/
 .lighthouse*.json
 .lighthouse*.html
-.screenshots
 UIUX/

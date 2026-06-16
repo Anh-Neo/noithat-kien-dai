@@ -1,0 +1,22 @@
+---
+const { eyebrow = "Mẫu thiết kế", title, description } = Astro.props;
+---
+
+<section class="archive-hero">
+  <picture class="archive-hero-bg" aria-hidden="true">
+    <source srcset="/assets/archive-hero-mobile.webp" media="(max-width: 680px)">
+    <img src="/assets/hero-interior.webp" width="1600" height="1088" alt="" loading="eager" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="archive-hero-inner">
+    <div>
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p>{description}</p>
+    </div>
+    <div class="archive-hero-panel" aria-label="Lợi ích khi tham khảo mẫu thiết kế">
+      <span>Ảnh lớn dễ xem</span>
+      <span>Lọc theo nhu cầu thực tế</span>
+      <span>Tối ưu SEO từng mẫu</span>
+    </div>
+  </div>
+</section>
